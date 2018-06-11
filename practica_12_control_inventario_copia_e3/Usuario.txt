@@ -1,0 +1,4 @@
+cualquier usuario almacenado en la BD
+o 
+usuario: root
+password: root
