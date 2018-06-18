@@ -1,0 +1,66 @@
+<?php
+//ver si hay una sesion existente
+  error_reporting(0);
+  session_start();
+  if(!$_SESSION['user']){
+    echo "
+    <script type='text/javascript'>
+      window.location='index.php';
+    </script>";
+  } 
+?>
+
+<!--cuerpo de la pagina-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registrar - Venta</title>
+</head>
+<body>
+
+	<div class="content-wrapper">
+	<div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">REGISTRAR VENTA</h3>
+              </div>
+              <div class="col-12">
+
+              <div class="card-body">
+                <!-- Color Picker -->
+                <div class="form-group">
+                	<!--Formulario para los capmos necesarios a llenar como tambien un select dinamico-->
+                  <form method="post">
+            					<!--<input type="text" placeholder="codigo" name="txtCodigo" required class="form-control my-colorpicker1">
+            					</br>-->
+                      Productos:<select id="select_productos" name="select_productos" class="form-control my-colorpicker1">
+                        <?php
+                          //cREAR un objeto MVC y accionar el controlador para traer todas las categorias y llenar el select
+                          $opcionesProd = new MvcController();
+                          $opcionesProd -> getProductosController();
+                        ?> 
+                      </select>
+                      </br>
+                      <input type="number" hint="cantidad" name="txtCantidad" class="form-control my-colorpicker1">
+                      </br>
+            					<input type="submit" value="Registrar Venta" name="registrar" class="btn btn-success">
+            					</br>
+                      <?php
+                        //Crear un objeto mvc y llamar el controlador registro de productos
+                        $registro = new MvcController();
+                        $registro -> registroVentasController();
+                      ?>
+            				</form>
+                </div>
+                <!-- /.form group -->
+              </div>
+              <!-- /.card-body -->
+            </div>  
+            </div>
+            <!-- /.card -->
+		</div>
+</body>
+</html>
+
+
+
+			
